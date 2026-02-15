@@ -27,16 +27,22 @@ pipeline{
 
         stage('Package'){
             steps {
-                bat 'mvn package'
+                bat 'mvn package -DskipTests'
             }
         }
 
-        stage('Check Docker') {
+        stage('Docker Build') {
             steps {
-                bat 'docker ps'
+                bat "docker build -t ci-cd-demo:${env.BUILD_NUMBER} ."
             }
         }
 
+        stage('Deploy with Docker Compose'){
+            steps{
+                bat 'docker compose down'
+                bat 'docker compose up -d --build'
+            }
+        }
     }
 
     post {
