@@ -19,6 +19,6 @@ public class UserControllerTest {
     void testHelloEndPoint() throws Exception{
         mockMvc.perform(get("/hello"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Hello CI-CD"));
+                .andExpect(content().string("Hello CI-CD is completed [change]"));
     }
 }
