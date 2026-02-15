@@ -30,6 +30,13 @@ pipeline{
                 bat 'mvn package'
             }
         }
+
+        stage('Check Docker') {
+            steps {
+                bat 'docker --version'
+            }
+        }
+
     }
 
     post {
